@@ -5,7 +5,7 @@ module.exports = {
       username: "dinesh",
     },
     faultyEmail: {
-      email: "someone@visa",
+      email: "someone@om",
       deviceId: "773467",
     },
     nonWLEmail: {
@@ -15,17 +15,17 @@ module.exports = {
   },
   validateOtpPayload: {
     good: {
-      email: "someone@visa.com",
+      email: "someone@om.com",
       deviceId: "773467",
       otp: "678977",
     },
     badOtp: {
-      email: "someone@visa.com",
+      email: "someone@om.com",
       deviceId: "773467",
       otp: "ab5013",
     },
     badEmail: {
-      email: "someone@visa",
+      email: "someone@om",
       deviceId: "773467",
       otp: "678977",
     },

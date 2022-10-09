@@ -1,5 +1,5 @@
 const AWS = require("aws-sdk");
-const config = require("../config/config");
+const config = require("./config");
 
 const decrypter = require("../server/helpers/decrypter.helper");
 

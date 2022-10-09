@@ -6,7 +6,7 @@ const toonavatar = require("cartoon-avatar");
 const md5 = require("md5");
 const userService = require("../services/users.service");
 const userAccessService = require("../services/userAccess.service");
-const profileService = require("../../Profile/services/profile.service");
+const profileService = require("../../profile/services/profile.service");
 // const accVerifyService = require("../../accountVerification/services/accVerification.service");
 const APIError = require("../../helpers/APIError.helper");
 const logger = require("../../../config/winston")(module);
@@ -927,10 +927,6 @@ module.exports.deleteUser = (req, res, next) => {
     );
   }
 };
-
-
-
-
 
 module.exports.updatePassword = async (req, res, next) => {
   const { body, user } = req;

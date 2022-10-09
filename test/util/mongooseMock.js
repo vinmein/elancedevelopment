@@ -8,7 +8,7 @@
  */
 const rewire = require("rewire");
 const { MongoMemoryServer } = require("mongodb-memory-server");
-// const { MachineKey } = require('@visa/protectconfig');
+
 const mongoose = require("mongoose");
 const logger = require("../../config/winston")(module); // The reason for this demo.
 // const configFile = `config/${process.env.NODE_ENV}.json`;

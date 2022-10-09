@@ -1,16 +1,16 @@
 module.exports = {
   clients: {
-    visa: { name: "VISA", domain: "visa.com", status: "ACTIVE" },
+    om: { name: "om", domain: "om.com", status: "ACTIVE" },
     gmail: { name: "GMAIL", domain: "gmail.com", status: "ACTIVE" },
   },
   email: {
-    visa: "someone@visa.com",
+    om: "someone@om.com",
     gmail: "someone@gmail.com",
-    faulty: "someone@visa",
+    faulty: "someone@om",
     hotmail: "someone@hotmail.com",
   },
   encryptedValues: {
-    visaEmail: "FaU(1(.@da+gVEB:",
+    omEmail: "FaU(1(.@da+gVEB:",
     gmail: '0y]]}%2@U"w#{W#:o',
     firstName: "C/Ht-{I",
     lastName: "mp(=6FOe",

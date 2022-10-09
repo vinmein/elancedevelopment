@@ -1,6 +1,6 @@
 apps:
   - script: npm start
-    name: visa_demo_experiences-api
+    name: om-api
     exec_mode: fork
     instances: 1
     node_args: "--inspect=0.0.0.0:9229"

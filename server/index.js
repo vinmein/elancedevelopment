@@ -13,8 +13,8 @@ const logger = require("../config/winston")(module);
 
 const user = require("./users/routes/users.routes");
 const resources = require("./resources/routes/resources.routes");
-const regions = require("./regions/routes/regions.route");
-const profile = require("./Profile/routes/profile.routes");
+const profile = require("./profile/routes/profile.routes");
+const cognito = require("./cognito/routes/cognito.routes");
 const shopifyStore = require("./shopify/routes/store.routes");
 
 /* End Requiring Different Modules for router */
@@ -43,7 +43,7 @@ const options = {
     info: {
       title: "Experience Service",
       version: "1.0.0",
-      description: "Visa demo Experience service swagger documentation ",
+      description: "Om service swagger documentation ",
     },
     servers: [
       {
@@ -71,9 +71,9 @@ router.get(
   Start routing different modules here. For code clarity
   please route them in the same order they are required above.
  */
+router.use("/v1/cognito", cognito);
 router.use("/v1/users", user);
 router.use("/v1/resources", resources);
-router.use("/v1/regions", regions);
 router.use("/v1/profile", profile);
 router.use("/v1/shopify/store", shopifyStore);
 

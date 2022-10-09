@@ -34,7 +34,7 @@ const remove = () => {
   ];
   interceptors.forEach((interceptor) => {
     nock.removeInterceptor({
-      hostname: "sl73playdapd008.visa.com",
+      hostname: "api.om.com",
       proto: "https",
       port: 5010,
       path: interceptor.path,

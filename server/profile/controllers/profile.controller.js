@@ -31,7 +31,7 @@ module.exports.create = async (req, res, next) => {
           last_name: req.lastName,
         },
       };
-      const customerResponse = shopifyCustomer.createCustomer();
+      const customerResponse = shopifyCustomer.createCustomer(obj);
       const customerId = customerResponse.id;
       console.log(customerId);
     }

@@ -64,7 +64,7 @@ const remove = () => {
   ];
   interceptors.forEach((interceptor) => {
     nock.removeInterceptor({
-      hostname: "management-dev-innovationplatform.visa.com",
+      hostname: "management.om.com",
       proto: "https",
       port: 8444,
       path: interceptor.path,

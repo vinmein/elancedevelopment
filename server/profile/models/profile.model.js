@@ -26,27 +26,20 @@ const profileSchema = new Schema(
     mobileNo: {
       type: String,
     },
-    firstName: {
+    fullName: {
       type: String,
       required: true,
     },
-    lastName: {
-      type: String,
-      required: true,
-    },
-    profileImage: {
+    userName: {
       type: String,
     },
-    type: {
-      type: [String],
+    customerId: {
+      type: String,
     },
     status: {
       type: String,
       default: "ACTIVE",
       enum: ["ACTIVE", "INACTIVE"],
-    },
-    profileUrl: {
-      type: String,
     },
   },
   {

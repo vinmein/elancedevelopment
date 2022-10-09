@@ -49,7 +49,7 @@ const remove = () => {
   ];
   interceptors.forEach((interceptor) => {
     nock.removeInterceptor({
-      hostname: "ent-qa-voltage.visa.com",
+      hostname: "api.om.com",
       proto: "https",
       port: 443,
       path: interceptor.path,
