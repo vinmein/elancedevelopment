@@ -14,6 +14,9 @@ const logger = require("../config/winston")(module);
 const user = require("./users/routes/users.routes");
 const resources = require("./resources/routes/resources.routes");
 const profile = require("./profile/routes/profile.routes");
+const temple = require("./temple/routes/temple.routes");
+const deity = require("./deity/routes/deity.routes");
+const product = require("./products/routes/product.routes");
 const cognito = require("./cognito/routes/cognito.routes");
 const shopifyStore = require("./shopify/routes/store.routes");
 
@@ -75,6 +78,9 @@ router.use("/v1/cognito", cognito);
 router.use("/v1/users", user);
 router.use("/v1/resources", resources);
 router.use("/v1/profile", profile);
+router.use("/v1/temples", temple);
+router.use("/v1/deities", deity);
+router.use("/v1/products", product);
 router.use("/v1/shopify/store", shopifyStore);
 
 /* End routing here */

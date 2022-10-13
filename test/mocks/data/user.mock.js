@@ -17,9 +17,9 @@ const load = () => {
   promises.push(
     userModel.create({
       app_id: testData.appId.receiptdee,
-      clientName: testData.clients.visa.name,
-      clientDomain: testData.clients.visa.domain,
-      status: testData.clients.visa.status,
+      clientName: testData.clients.om.name,
+      clientDomain: testData.clients.om.domain,
+      status: testData.clients.om.status,
     })
   );
   promises.push(

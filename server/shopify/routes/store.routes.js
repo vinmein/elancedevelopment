@@ -13,7 +13,15 @@ const antivirus = require("../../middleware/antivirus.middleware");
 // router.route("/").get(controller.get);
 
 router.route("/products").get(controller.getProducts);
-router.route("/collections").get(controller.getCollections);
-router.route("/collections/products").get(controller.getProductFromCollection);
+router.route("/temples").get(controller.getCollections);
+router
+  .route("/temples/products/:templeCode")
+  .get(controller.getProductFromCollection);
+
+router.route("/temples/products/cache").post(controller.generateProductCache);
+
+router
+  .route("/temples/products/cache/:produtId")
+  .patch(controller.updateProductCache);
 
 module.exports = router;

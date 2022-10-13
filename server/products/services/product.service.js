@@ -1,9 +1,21 @@
 const mongoose = require("mongoose");
 const database = require("../../helpers/db.helper");
 
-require("../models/profile.model");
+require("../models/product.model");
 
-const Model = mongoose.model("Profile");
+const Model = mongoose.model("product");
+
+module.exports.bulkCreate = (data) =>
+  new Promise((resolve, reject) => {
+    database
+      .many(Model, data)
+      .then((response) => {
+        return resolve(response);
+      })
+      .catch((e) => {
+        return reject(e);
+      });
+  });
 
 module.exports.create = (data) =>
   new Promise((resolve, reject) => {

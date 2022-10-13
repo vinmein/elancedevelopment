@@ -4,14 +4,14 @@ module.exports.save = (Model, payload) => {
 };
 
 module.exports.getDoc = (Model, query) =>
-  Model.find(query).select("-__v").exec();
+  Model.find(query).select("-__v").lean().exec();
 
 module.exports.deleteOne = (Model, query) => Model.deleteOne(query);
 
 module.exports.deleteMany = (Model, query) => Model.deleteMany(query);
 
 module.exports.getOneDoc = (Model, query, filter = {}) =>
-  Model.findOne(query, filter).exec();
+  Model.findOne(query, filter).lean().exec();
 
 module.exports.list = (
   Model,
@@ -26,6 +26,7 @@ module.exports.list = (
     .sort(sort)
     .skip(skip)
     .limit(limit)
+    .lean()
     .exec();
 
 module.exports.updateDoc = (
@@ -37,7 +38,7 @@ module.exports.updateDoc = (
     upsert: false,
     new: true,
   }
-) => Model.findOneAndUpdate(condition, set, options).exec();
+) => Model.findOneAndUpdate(condition, set, options).lean().exec();
 
 module.exports.many = (Model, data) =>
   new Promise((resolve, reject) => {

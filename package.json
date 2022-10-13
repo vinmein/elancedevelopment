@@ -13,7 +13,6 @@
     "doc": "apidoc-swagger -v -e 'node_modules/' -i server/ -o doc/",
     "swag": "swagger-jsdoc -d doc/swaggerDef.js server/**/routes/*.js",
     "seed": "node scripts/seed.js",
-    "regions": "node scripts/regions.js",
     "acl": "node scripts/generateACL.js",
     "lint": "eslint ."
   },
