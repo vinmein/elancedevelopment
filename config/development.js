@@ -1,7 +1,5 @@
 module.exports = {
-  database: {
-    db_url: "mongodb://localhost:27017/experiences",
-  },
+  database: {},
   base_url: `http://localhost:${process.env.PORT}`,
   app_url: `http://localhost:3500`,
   aws: {

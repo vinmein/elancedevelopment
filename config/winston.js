@@ -20,12 +20,12 @@ const logger = (module) =>
     transports: [
       new transports.Console(),
       new transports.File({
-        filename: "exp-platform-access.log",
+        filename: "om-access.log",
         level: "info",
         timestamp: true,
       }),
       new transports.File({
-        filename: "exp-platform-error.log",
+        filename: "om-error.log",
         level: "error",
         timestamp: true,
       }),

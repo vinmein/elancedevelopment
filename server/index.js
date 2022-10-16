@@ -44,7 +44,7 @@ const options = {
     },
     openapi: "3.0.0",
     info: {
-      title: "Experience Service",
+      title: "Om Service",
       version: "1.0.0",
       description: "Om service swagger documentation ",
     },

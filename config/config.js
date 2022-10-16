@@ -9,7 +9,7 @@ const config = {
   development: {
     root: rootPath,
     app: {
-      name: "experiences",
+      name: "om",
     },
     port: process.env.PORT || 3000,
     extras: contents,
@@ -18,7 +18,7 @@ const config = {
   test: {
     root: rootPath,
     app: {
-      name: "experiences",
+      name: "om",
     },
     port: process.env.PORT || 3000,
     extras: contents,
@@ -27,7 +27,7 @@ const config = {
   qa: {
     root: rootPath,
     app: {
-      name: "experiences",
+      name: "om",
     },
     port: process.env.PORT || 3000,
     extras: contents,
@@ -36,7 +36,7 @@ const config = {
   production: {
     root: rootPath,
     app: {
-      name: "experiences",
+      name: "om",
     },
     port: process.env.PORT || 3000,
     extras: contents,

@@ -12,6 +12,7 @@ const methodOverride = require("method-override");
 const swig = require("swig");
 const helmet = require("helmet");
 const cors = require("cors");
+const protectConfig = require("protect-config");
 const sts = require("strict-transport-security");
 const accessCtrl = require("accessctrl");
 const authSupport = require("../server/middleware/auth.middleware");
