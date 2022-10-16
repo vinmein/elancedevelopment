@@ -14,6 +14,7 @@ module.exports.uploadFile = (req, res, next) => {
   const contentType = file.mimetype;
   const image = fs.createReadStream(tmpPath);
   const directory = body.category || "default";
+  const name = body.name || "default";
   const type = contentType.split("/");
   const randomName = type.length > 1 ? `${sid}.${type[1]}` : `${sid}.png`;
   const params = {
@@ -33,6 +34,7 @@ module.exports.uploadFile = (req, res, next) => {
           file: resource,
           createdBy: "user",
           category: directory,
+          name,
           resourceId: sid,
         };
         const savedData = await resourceService.saveToCollection(payload);
