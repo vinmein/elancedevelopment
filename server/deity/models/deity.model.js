@@ -16,6 +16,10 @@ const deitySchema = new Schema(
       type: String,
       required: true,
     },
+    imageUrl: {
+      type: String,
+      required: true,
+    },
     templeCode: {
       type: String,
       required: true,
