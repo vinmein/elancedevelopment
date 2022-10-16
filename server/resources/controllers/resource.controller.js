@@ -31,7 +31,7 @@ module.exports.uploadFile = (req, res, next) => {
           fileName: `${resource.Key}`,
           fileType: contentType,
           file: resource,
-          createdBy: user.userId,
+          createdBy: "user",
           category: directory,
           resourceId: sid,
         };
@@ -71,4 +71,3 @@ module.exports.uploadFile = (req, res, next) => {
       );
     });
 };
-

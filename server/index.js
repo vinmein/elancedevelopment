@@ -19,7 +19,6 @@ const deity = require("./deity/routes/deity.routes");
 const product = require("./products/routes/product.routes");
 const cognito = require("./cognito/routes/cognito.routes");
 const shopifyStore = require("./shopify/routes/store.routes");
-
 /* End Requiring Different Modules for router */
 
 router.get("/health-check", (req, res) => {
