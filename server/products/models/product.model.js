@@ -1,11 +1,17 @@
 // Example model
 
 const mongoose = require("mongoose");
+const shortid = require("shortid");
 
 const { Schema } = mongoose;
 
 const productSchema = new Schema(
   {
+    entryId: {
+      type: String,
+      default: shortid.generate,
+      required: true,
+    },
     productId: {
       type: String,
       required: true,

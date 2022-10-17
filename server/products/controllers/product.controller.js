@@ -22,7 +22,7 @@ module.exports.getProducts = async (req, res, next) => {
     );
   }
   if (query.tags) {
-    query.templeCode = { $in: [query.tags] };
+    query.templeCode = query.tags;
   }
   try {
     let deityList;
@@ -31,17 +31,18 @@ module.exports.getProducts = async (req, res, next) => {
       const properties = await deityService.getAll({
         templeCode: query.tags,
       });
-      console.log(properties);
-      if (properties) {
-        deityList = storeService.proccessDeity(properties);
-      }
+
       const grouped = _.groupBy(data, "isArchanai");
 
       const archanaiProducts = _.map(grouped.true, (value) => {
-        const obj = value;
-        if (deityList[obj.productId]) {
-          obj.deityList = deityList[obj.productId];
-        }
+        const obj = { ...value };
+
+        const filtered = _.filter(properties, (o) => {
+          return obj.deities.indexOf(o.deityId) > -1;
+        });
+
+        obj.deityList = filtered;
+
         return obj;
       });
 
@@ -63,6 +64,35 @@ module.exports.getProducts = async (req, res, next) => {
         0
       )
     );
+  } catch (e) {
+    const code = `Err${CONSTANTS.MODULE_CODE.SCHEDULER}${CONSTANTS.OPERATION_CODE.UPDATE}${CONSTANTS.ERROR_TYPE.SYSTEM}1`;
+    return next(
+      new APIError(e.message, e.status, true, res.__("system_error"), code)
+    );
+  }
+};
+
+module.exports.updateProduct = async (req, res, next) => {
+  const { params, body } = req;
+  try {
+    const response = await service.get(params);
+    if (response && response.isArchanai) {
+      const payload = {};
+      if (body.deity === "ALL") {
+        const data = await deityService.getAll({
+          templeCode: response.templeCode,
+        });
+        const deities = _.map(data, "deityId");
+        const differences = _.difference(deities, response.deities);
+        payload.$push = { deities: { $each: differences } };
+      } else if (response.deities.indexOf(body.deities) === -1) {
+        payload.$push = { deities: body.deity };
+      } else {
+        return res.send({ msg: "Deity has already added" });
+      }
+      const patchResult = await service.patch(params, payload);
+      return res.status(httpStatus.OK).send(patchResult);
+    }
   } catch (e) {
     const code = `Err${CONSTANTS.MODULE_CODE.SCHEDULER}${CONSTANTS.OPERATION_CODE.UPDATE}${CONSTANTS.ERROR_TYPE.SYSTEM}1`;
     return next(

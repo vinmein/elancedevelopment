@@ -221,17 +221,20 @@ module.exports.updateProductCache = async (req, res, next) => {
 
         const variantByKey = _.keyBy(variants, "product_id");
         const variant = variantByKey[product.id];
-        let isArchanai;
-        if (tags.indexOf("archanai") > -1) {
-          isArchanai = true;
-        } else {
-          isArchanai = false;
+        let isArchanai = false;
+        let isServices = false;
+        if (tags.indexOf("SERVICES") > -1) {
+          isServices = true;
+          if (tags.indexOf("archanai") > -1) {
+            isArchanai = true;
+          }
         }
         const obj = {
           title: product.title,
           image: product.image.src || null,
           tags,
           isArchanai,
+          isServices,
           product,
           variants: variant,
         };

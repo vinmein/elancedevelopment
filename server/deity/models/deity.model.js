@@ -28,9 +28,6 @@ const deitySchema = new Schema(
       type: String,
       required: true,
     },
-    archanai: {
-      type: Array, // [7889149231363, 7889149231343]
-    },
     status: {
       type: String,
       default: "ACTIVE",

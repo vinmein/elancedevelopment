@@ -8,4 +8,6 @@ const controller = require("../controllers/product.controller");
 
 router.route("/").get(controller.getProducts);
 
+router.route("/:entryId").patch(controller.updateProduct);
+
 module.exports = router;
