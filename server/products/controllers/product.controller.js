@@ -22,7 +22,7 @@ module.exports.getProducts = async (req, res, next) => {
     );
   }
   if (query.tags) {
-    query.tags = { $in: [query.tags] };
+    query.templeCode = { $in: [query.tags] };
   }
   try {
     let deityList;

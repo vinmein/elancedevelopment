@@ -142,40 +142,53 @@ module.exports.getProductFromCollection = async (req, res, next) => {
 
 module.exports.generateProductCache = async (req, res, next) => {
   try {
-    const products = await service.getProducts();
-    if (products.body && products.body.products) {
-      const map = _.map(products.body.products, "id");
-      const items = await productService.getAll({ productId: { $in: map } });
-      const preCreated = _.keyBy(items, "productId");
-      const variants = await fetchVariants(map);
-      const final = [];
-      _.map(products.body.products, (value) => {
-        if (!preCreated[value.id]) {
-          const withoutSpaces = value.tags.replace(/ /g, "");
-          const tags = withoutSpaces.split(",");
-          let isArchanai;
-          if (tags.indexOf("archanai") > -1) {
-            isArchanai = true;
-          } else {
-            isArchanai = false;
+    const temples = await templeService.getAll();
+    if (temples) {
+      const templeCodes = _.map(temples, "templeCode");
+      const products = await service.getProducts();
+      if (products.body && products.body.products) {
+        const map = _.map(products.body.products, "id");
+        const items = await productService.getAll({ productId: { $in: map } });
+        const preCreated = _.groupBy(items, "productId");
+        const variants = await fetchVariants(map);
+        const final = [];
+        _.map(products.body.products, (value) => {
+          if (!preCreated[value.id]) {
+            const withoutSpaces = value.tags.replace(/ /g, "");
+            const tags = withoutSpaces.split(",");
+            let isArchanai = false;
+            let isServices = false;
+            if (tags.indexOf("SERVICES") > -1) {
+              isServices = true;
+              if (tags.indexOf("archanai") > -1) {
+                isArchanai = true;
+              }
+            }
+            const obj = {
+              productId: value.id,
+              title: value.title,
+              image: value.image.src || null,
+              tags,
+              isArchanai,
+              isServices,
+              product: value,
+            };
+            const variant = variants[value.id];
+            obj.price = parseInt(variant.price, 10);
+            obj.variant = variant;
+            obj.weight = variant.title;
+            templeCodes.forEach((code) => {
+              if (tags.indexOf(code) > -1) {
+                const temp = { ...obj };
+                temp.templeCode = code;
+                final.push(temp);
+              }
+            });
           }
-          const obj = {
-            productId: value.id,
-            title: value.title,
-            image: value.image.src || null,
-            tags,
-            isArchanai,
-            product: value,
-          };
-          const variant = variants[value.id];
-          obj.price = parseInt(variant.price, 10);
-          obj.variant = variant;
-          obj.weight = variant.title;
-          final.push(obj);
-        }
-      });
-      const data = await productService.bulkCreate(final);
-      return res.status(httpStatus.OK).send(data);
+        });
+        const data = await productService.bulkCreate(final);
+        return res.status(httpStatus.OK).send(data);
+      }
     }
     return next(
       new APIError(

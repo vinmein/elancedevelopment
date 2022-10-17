@@ -10,6 +10,10 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
+    templeCode: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
@@ -24,8 +28,16 @@ const productSchema = new Schema(
     tags: {
       type: Array,
     },
+    isServices: {
+      type: Boolean,
+      required: true,
+    },
     isArchanai: {
       type: Boolean,
+      required: true,
+    },
+    deities: {
+      type: Array,
       required: true,
     },
     product: {
@@ -51,6 +63,6 @@ const productSchema = new Schema(
   }
 );
 
-productSchema.index({ productId: 1 }, { unique: true });
+productSchema.index({ productId: 1, templeCode: 1 }, { unique: true });
 
 module.exports = mongoose.model("product", productSchema);
